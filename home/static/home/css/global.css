@@ -1,0 +1,123 @@
+/*Estilos Globales*/
+li{
+    list-style-type: none;
+}
+
+section{
+    padding: 150px 0 150px 0;
+}
+
+/*Estilos del navbar*/
+
+#mainNav{
+    background-color: white;
+}
+
+.nav-ul{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.5em;
+}
+
+.blood-drop{
+    fill: red;
+}
+
+/*Estilos del Header*/
+
+.masthead{
+    margin-top: 92px;
+    padding: 15em 0 15em 0;
+    width:100%;
+}
+
+.header-title1{
+    font-family: 'Lobster', cursive;
+    font-size: 4em;
+}
+
+.header-title2{
+    font-family: 'Staatliches', cursive;
+    font-size: 2.5em;
+    /*text-transform: uppercase;*/
+}
+
+/*Estilos Invitación*/
+
+.invitacion{
+    font-family: 'Ubuntu', sans-serif;  
+    background-color: #6ebfb5;
+    
+}
+
+.invitacion1{
+    font-size: 2em;
+    font-style: italic;
+    color: whitesmoke;
+}
+
+.invitacion2{
+    font-size: 1.5em;
+    font-style: normal;
+    color: whitesmoke;
+}
+
+/*Herramienta*/
+
+.herramienta{
+    font-family: 'Ubuntu', sans-serif;
+    /*margin: 100px 0 100px 0;*/
+
+}
+
+.herramienta1{
+    font-size: 2em;
+    font-style: italic;
+
+}
+
+/*Hashtag*/
+
+.hashtag{
+    font-family: 'Staatliches', cursive;
+    /*margin: 100px 0 100px 0;*/
+    background-color:#6ebfb5;
+}
+
+.hashtag1{
+    /*text-transform: uppercase;*/
+    font-size: 4vw;
+    color: whitesmoke;
+}
+
+.hashtag2{
+    font-size: 1.2em;
+    margin-top: -30px;
+    color: whitesmoke;
+}
+
+#concientizar{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/*Contacto*/
+
+#contact{
+    font-family: 'Ubuntu', sans-serif;
+    margin-bottom: -50px;
+}
+.contacto-pregunta{
+    font-style: italic;
+}
+.text-muted{
+    padding: 15px 0 15px 0;
+}
+.contacto-email{
+    color: #54928b;
+}
+.contacto-email:hover{
+    text-decoration: none;
+    color:#6ebfb5;
+}
+.contacto-email:visited{
+    text-decoration: none;
+}

@@ -1,0 +1,149 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block content  %}
+
+<div class="col-md-12" style="margin-top: 100px;">
+	<div class="card">
+		<div class="card-header">
+			<div class="d-flex justify-content-between align-items-center">
+				<h3 class="card-title mb-0">Posibles <b>Donantes</b></h3>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#addDonante"><i class="fa fa-plus"></i>
+					Agregar Donante</button>
+			</div>
+		</div>
+		<div class="card-body">
+			<table id="tableDonante" class="table table-striped responsive nowrap" width="100%">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Contacto</th>
+						<th>Tipo de sangre</th>
+						<th>Posee transporte</th>
+						<th>Informaci&oacute;n adicional</th>
+						<th>Registrado</th>
+						<th class="none">Reportar</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for donante in donantes %}
+					<tr>
+						<td>{{ donante.nombre }}</td>
+						<td>{{ donante.telefonoContacto}}</td>
+						<td>{{ donante.tipoDeSangre }}</td>
+						<td>{{ donante.poseeTransporte }}</td>
+						<td>{{ donante.informacionAdicional }}</td>
+						<td>{{ donante.created|date:"SHORT_DATE_FORMAT" }}</td>
+						<td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#report"
+								onclick="reportar('{{ donante.nombre }}',{{ donante.id }})">Reportar</button></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!-- Añadir Registro Modal HTML -->
+<div id="addDonante" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="post" action="{% url 'Donante' %}" id="form1">
+				{% csrf_token %}
+				<div class="modal-header">
+					<h4 class="modal-title">Añadir Donante</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>					
+				</div>			
+				<div class="modal-body">					
+					<div class="form-group">
+						<label>Nombre *</label>
+						{{ form.nombre }}
+					</div>
+					<div class="form-group">
+						<label>Teléfono de Contacto *</label>
+						{{ form.telefonoContacto}}
+					</div>
+					<div class="form-group">
+						<label>Tipo de Sangre *</label>
+						{{ form.tipoDeSangre}}
+					</div>
+					<div class="form-group">
+						<label>¿Posee Transporte? *</label>
+						{{ form.poseeTransporte}}
+					</div>
+					<div class="form-group">
+						<label>Información adicional *</label>
+						{{ form.informacionAdicional}}
+					</div>
+					<small class="text-muted">* Campo requerido</small>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" name="add" value="Agregar" id="agregar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Reportar -->
+<div id="report" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="post" action="{% url 'Donante' %}">
+				{% csrf_token %}
+				<div class="modal-header">
+					<h4 class="modal-title">Reportar elemento</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<input id="idDonante" type="hidden" name="idDonante">
+					<p id="reportText"></p>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" name="reportar" id="reportar" class="btn btn-danger" value="Reportar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="{% static 'donante/donante.js' %}"></script>
+
+{% if messageError %}
+<script>
+	$(document).ready(function () {
+		const message = {{ messageError|safe }};
+		Swal.fire({
+			position: 'top-end',
+			title: 'Error!',
+			text: message,
+			icon: 'error',
+			timer: 2000,
+			showCancelButton: false,
+			showConfirmButton: false,
+		});
+	});
+</script>
+{% endif %}
+
+{% if messageSuccess %}
+<script>
+	$(document).ready(function () {
+		const message = {{ messageSuccess|safe }};
+		Swal.fire({
+			position: 'top-end',
+			title: 'Registrado!',
+			text: message,
+			icon: 'success',
+			timer: 2000,
+			showCancelButton: false,
+			showConfirmButton: false,
+		});
+	});
+</script>
+{% endif %}
+
+{% endblock content%}

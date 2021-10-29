@@ -1,0 +1,32 @@
+Instalación fue hecha a través de DigitalOcean abajo se detalla la información concerniente a la maquina virtual
+
+SERVER : Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-66-generic x86_64)
+
+Debido a un problema de puesta en marcha del servidor, se tomo al decisión de no usar un entorno virtual al momento de la implementación de este proyecto.
+Sin embargo, para el desarrollo del servidor y para nueva funcionalidad será mejor usar un entorno virtual e instalar las dependencias para el buen
+funcionamiento de este.
+
+Python 3.6.9
+pip 20.2.1
+
+La version de python es la que ya trae por defecto el servidor.
+
+Para la instalación de pip >>  sudo apt install python3-pip.
+	Por defecto se instalo la version 9 de pip pero se hizo el upgrade que sugiere el mismo script >>  sudo python3 -m pip install --upgrade pip 
+
+Por alguna razón pip3 no permitía la instalación directa de Django a través de ese paquete, según lo que leí es porque ubuntu 18.04 ya trae dentro de
+los paquetes la instalación de este Ubuntu. 
+
+https://askubuntu.com/questions/933264/python3-pip-does-not-install-django
+
+sudo apt-get install python3-django  >> Este script automaticamente instala Django en el sistema
+
+Django 3.1
+
+Dentro del proyecto estan los requisitos para correr el sistema.
+
+En resumen lo que se necesita es esto:
+
+Python 3.6.9
+pip 20.2.1
+Django 3.1

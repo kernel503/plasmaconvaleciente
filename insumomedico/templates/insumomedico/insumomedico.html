@@ -1,0 +1,128 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block content  %}
+
+<div class="col-md-12 bg-white" style="margin-top: 100px;">
+    <div class="card bg-white border-white">
+        <div class="card-header bg-white border-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0"><b>Suministros</b></h3>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#addSuministro"><i
+                        class="fa fa-plus"></i>
+                    Agregar Suministro</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {% for insumomedico in insumosmedicos %}
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    {{ insumomedico.nombreEstablecimiento }}
+                </div>
+                <div class="card-body" style="padding-top: 0px;">
+                    <p class="card-text">{{ insumomedico.informacionAdicional|safe}}</p>
+                    {% if insumomedico.sitio %}
+                    <a href="{{ insumomedico.sitio }}" class="btn btn-info">Visitar Sitio</a>
+                    {% endif %}                    
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<!-- Añadir Registro Modal HTML -->
+<div id="addSuministro" class="modal fade">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form method="post" action="{% url 'InsumoMedico' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h4 class="modal-title">Agregar Insumo Medico</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nombre de establecimiento *</label>
+                        <input id="nombreEstablecimiento" class="form-control" type="text" name="nombreEstablecimiento"  required>                        
+                    </div>
+                    <div class="form-group">
+                        <label>Link de sitio</label>
+                        <input id="sitio" class="form-control"  name="sitio" type="text" placeholder="ej. https://www.google.es">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripci&oacute;n del sitio *</label>
+                        <textarea id="informacionAdicional" name="informacionAdicional" class="summernote"></textarea>
+                    </div>
+                    <small class="text-muted">* Campo requerido</small>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input id="agregar" name="agregar" type="submit" class="btn btn-success" value="Agregar">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () { 
+        bootstrapValidate('#nombreEstablecimiento', 'required:Por favor rellene este campo!|max:100:No debe superar los 100 caracteres!');
+        //bootstrapValidate('#sitio', 'url:Por favor introduzca un URL válido!');       
+        $('.summernote').summernote({
+            toolbar: [
+    ['style', ['bold', 'italic', 'underline', 'clear']],
+    ['font', ['strikethrough', 'superscript', 'subscript']],
+    ['fontsize', ['fontsize']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['height', ['height']]
+  ]
+        });
+    });
+</script>
+
+
+{% if messageSuccess %}
+<script>
+	$(document).ready(function () {
+		const message = {{ messageSuccess|safe }};
+		Swal.fire({
+			position: 'top-end',
+			title: 'Registrado!',
+			text: message,
+			icon: 'success',
+			timer: 2000,
+			showCancelButton: false,
+			showConfirmButton: false,
+		});
+	});
+</script>
+{% endif %}
+
+
+{% if messageError %}
+<script>
+	$(document).ready(function () {
+		const message = {{ messageError|safe }};
+		Swal.fire({
+			position: 'top-end',
+			title: 'Error!',
+			text: message,
+			icon: 'error',
+			timer: 2000,
+			showCancelButton: false,
+			showConfirmButton: false,
+		});
+	});
+</script>
+{% endif %}
+
+{% endblock content  %}

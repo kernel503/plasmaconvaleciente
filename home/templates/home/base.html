@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plasma Convaleciente El Salvador 2020</title>
+    <link rel="shortcut icon" href="https://lh3.googleusercontent.com/proxy/Z_ukxS4kdNFLvExY5b_MrrJECMKxYlRp5EtfDkAEbvYwZ8a6tCPpc-nZm7fOtEvkB8WKzGbot1CXnmh13CzQK8xiElWsN-sSg7l16Zw2mO3cMyBpy3fgGf2mT2H3yUPYH28rBxb4GHlJzSuMKdB03Y4" type="image/x-icon" />
+
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!--Estilos CSS-->
+    <link rel="stylesheet" href="{% static 'home/css/global.css' %}">
+    <!--
+    <link rel="stylesheet" href="{% static 'home/css/tablemodalstyle.css' %}">
+    -->
+    <!--CDN table modal-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- Datatable Descargar -->
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.5/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.5/datatables.min.js"></script>
+
+    <!-- Boostrap-Validate Descargar -->
+    <script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js"></script>
+
+    <!-- SweetAlert Descargar -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <!-- Boostrap Select -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+
+    {% block title %}
+    {% endblock title %}
+
+</head>
+
+<body id="page-top">
+
+    <div class="col-md-12">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+                <a class="navbar-brand nav-link" href="{% url 'Home' %}">
+                    <svg class="blood-drop" xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M12 0c-4.87 7.197-8 11.699-8 16.075 0 4.378 3.579 7.925 8 7.925s8-3.547 8-7.925c0-4.376-3.13-8.878-8-16.075zm4 16h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2z" />
+                    </svg>
+                </a>
+            </li>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse align-center" id="navbarNav">
+                <ul class="navbar-nav nav-ul">
+                    <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+                        <a class="nav-link text-uppercase text-expanded" href="{% url 'Home' %}">Inicio</a>
+                    </li>
+                    <li class="nav-item {% if request.path == '/donante/' %}active{% endif %}">
+                        <a class="nav-link text-uppercase text-expanded" href="{% url 'Donante' %}">Donadores</a>
+                    </li>
+                    <li class="nav-item {% if request.path == '/paciente/' %}active{% endif %}">
+                        <a class="nav-link text-uppercase text-expanded" href="{% url 'Paciente' %}">Pacientes</a>
+                    </li>
+                    <li class="nav-item {% if request.path == '/insumomedico/' %}active{% endif %}">
+                        <a class="nav-link text-uppercase text-expanded" href="{% url 'InsumoMedico' %}">Insumos
+                            Médicos</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!--Contenido Cambiante-->
+
+    {% block content %}
+    {% endblock content %}
+
+    <!-- Footer-->
+    <footer class="py-4">
+        <div class="container">
+            <div class="small text-center text-muted">Copyright © 2020 - El Salvador</div>
+        </div>
+    </footer>
+
+    {% block scripts %}
+    {% endblock scripts %}
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+</body>
+
+</html>
